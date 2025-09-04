@@ -1,49 +1,33 @@
            >>SOURCE FORMAT FREE
        IDENTIFICATION DIVISION.
-       PROGRAM-ID. grades.
+       PROGRAM-ID. COBOLYTICS.
        ENVIRONMENT DIVISION.
-       CONFIGURATION SECTION.
+       INPUT-OUTPUT SECTION.
+       FILE-CONTROL.
+           SELECT INPUT-FILE ASSIGN TO FILENAME
+               FILE STATUS IS FILE-STATUS.
+
        DATA DIVISION.
        FILE SECTION.
+       FD INPUT-FILE.
+       01 INPUT-RECORD     PIC X(99).
+
        WORKING-STORAGE SECTION.
-       01 Xquit               PIC X(1).
-       01 Grade1              PIC 99.
-       01 Grade2              PIC 99.
-       01 Grade3              PIC 99.
-       01 CalcGrade           PIC 999V99.
-       01 FinGrade            PIC X.
-           88  GradeLetter VALUES 'A', 'B', 'C', 'D', 'F'.
+       01 FILENAME         PIC X(99).
+       01 FILE-STATUS      PIC X(2).
 
        PROCEDURE DIVISION.
        
-       PERFORM CALCULATOR UNTIL Xquit = 'x'           
+       DISPLAY "Enter FILENAME: " WITH NO ADVANCING
+       ACCEPT FILENAME
+
+       OPEN INPUT INPUT-FILE.
+
+       IF FILE-STATUS = "00" THEN
+           DISPLAY "File opened successfully"
+           CLOSE INPUT-FILE
+       ELSE
+           DISPLAY "Error opening file. Status: " FILE-STATUS
+       END-IF.
+
        STOP RUN.
-
-       CALCULATOR.
-           DISPLAY "Enter Grade 1 " WITH NO ADVANCING
-           ACCEPT Grade1
-           DISPLAY "Enter Grade 2 " WITH NO ADVANCING
-           ACCEPT Grade2
-           DISPLAY "Enter Grade 3 " WITH NO ADVANCING
-           ACCEPT Grade3
-
-           COMPUTE CalcGrade = (Grade1 + Grade2 + Grade3) / 3
-
-           EVALUATE TRUE
-               WHEN CalcGrade >= 90
-                   SET FinGrade to 'A'
-               WHEN CalcGrade >= 80 AND CalcGrade < 90
-                   SET FinGrade to 'B'
-               WHEN CalcGrade >= 70 AND CalcGrade < 80
-                   SET FinGrade to 'C'
-               WHEN CalcGrade >= 60 AND CalcGrade < 70
-                   SET FinGrade to 'D'
-               WHEN OTHER
-                   SET FinGrade to 'F'
-           END-EVALUATE.
-
-           DISPLAY "Grade Average: " CalcGrade "%"
-           DISPLAY "Letter Average: " FinGrade 
-
-           DISPLAY "Press any key to continue or X to quit "
-           ACCEPT Xquit.
