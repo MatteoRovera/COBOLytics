@@ -101,3 +101,69 @@ IDENTIFICATION DIVISION.
            BLOCK CONTAINS 0 RECORDS
            LABEL RECORDS ARE STANDARD.
        01  ERROR-LINE                  PIC X(80).
+
+       WORKING-STORAGE SECTION.
+       77  WS-MASTER-STATUS            PIC XX VALUE SPACES.
+       77  WS-TRANS-STATUS             PIC XX VALUE SPACES.
+       77  WS-NEW-EMP-STATUS           PIC XX VALUE SPACES.
+       77  WS-REPORT-STATUS            PIC XX VALUE SPACES.
+       77  WS-ERROR-STATUS             PIC XX VALUE SPACES.
+
+       77  WS-EOF-MASTER               PIC X VALUE 'N'.
+           88  EOF-MASTER              VALUE 'Y'.
+       77  WS-EOF-TRANS                PIC X VALUE 'N'.
+           88  EOF-TRANS               VALUE 'Y'.
+       77  WS-EOF-NEW-EMP              PIC X VALUE 'N'.
+           88  EOF-NEW-EMP             VALUE 'Y'.
+
+       77  WS-RECORD-COUNT             PIC 9(6) VALUE ZERO.
+       77  WS-ERROR-COUNT              PIC 9(6) VALUE ZERO.
+       77  WS-UPDATE-COUNT             PIC 9(6) VALUE ZERO.
+       77  WS-ADD-COUNT                PIC 9(6) VALUE ZERO.
+       77  WS-DELETE-COUNT             PIC 9(6) VALUE ZERO.
+
+       77  WS-TOTAL-SALARY             PIC 9(10)V99 VALUE ZERO.
+       77  WS-AVERAGE-SALARY           PIC 9(7)V99 VALUE ZERO.
+       77  WS-PAGE-NUMBER              PIC 9(3) VALUE 1.
+       77  WS-LINE-COUNT               PIC 9(3) VALUE ZERO.
+
+       01  WS-CURRENT-DATE.
+           05  WS-CURRENT-YEAR         PIC 9(4).
+           05  WS-CURRENT-MONTH        PIC 9(2).
+           05  WS-CURRENT-DAY          PIC 9(2).
+
+       01  WS-FORMATTED-DATE           PIC X(10).
+
+       01  WS-REPORT-HEADERS.
+           05  WS-HEADER-1.
+               10  FILLER              PIC X(50) VALUE SPACES.
+               10  FILLER              PIC X(32) 
+                   VALUE 'EMPLOYEE PAYROLL SUMMARY REPORT'.
+               10  FILLER              PIC X(35) VALUE SPACES.
+               10  FILLER              PIC X(5) VALUE 'PAGE '.
+               10  WS-PAGE-NO          PIC ZZ9.
+               10  FILLER              PIC X(7) VALUE SPACES.
+
+           05  WS-HEADER-2.
+               10  FILLER              PIC X(55) VALUE SPACES.
+               10  FILLER              PIC X(10) VALUE 'RUN DATE: '.
+               10  WS-RUN-DATE         PIC X(10).
+               10  FILLER              PIC X(57) VALUE SPACES.
+
+           05  WS-HEADER-3.
+               10  FILLER              PIC X(132) VALUE ALL '-'.
+
+           05  WS-HEADER-4.
+               10  FILLER              PIC X(2) VALUE SPACES.
+               10  FILLER              PIC X(8) VALUE 'EMP ID'.
+               10  FILLER              PIC X(3) VALUE SPACES.
+               10  FILLER              PIC X(15) VALUE 'EMPLOYEE NAME'.
+               10  FILLER              PIC X(18) VALUE SPACES.
+               10  FILLER              PIC X(4) VALUE 'DEPT'.
+               10  FILLER              PIC X(3) VALUE SPACES.
+               10  FILLER              PIC X(15) VALUE 'JOB TITLE'.
+               10  FILLER              PIC X(12) VALUE SPACES.
+               10  FILLER              PIC X(10) VALUE 'SALARY'.
+               10  FILLER              PIC X(5) VALUE SPACES.
+               10  FILLER              PIC X(6) VALUE 'STATUS'.
+               10  FILLER              PIC X(31) VALUE SPACES.
