@@ -167,3 +167,4 @@ IDENTIFICATION DIVISION.
                10  FILLER              PIC X(5) VALUE SPACES.
                10  FILLER              PIC X(6) VALUE 'STATUS'.
                10  FILLER              PIC X(31) VALUE SPACES.
+       STOP RUN.
