@@ -1,7 +1,7 @@
            >>SOURCE FORMAT FREE
        IDENTIFICATION DIVISION.
        PROGRAM-ID. COBOLYTICS.
-       AUTHOR. Matteo
+       AUTHOR. Matteo Rovera
        ENVIRONMENT DIVISION.
        INPUT-OUTPUT SECTION.
        FILE-CONTROL.
